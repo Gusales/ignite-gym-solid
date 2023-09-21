@@ -54,6 +54,6 @@ Realize uma cópia do arquivo <i>.env.example</i>, renomeando-o para apenas <i>.
 
 ## Links
 
-- <a href="https://www.notion.so/RoadMap-Ignite-Gympass-API-c1b83f62f37a4d3faefae6f20531a8d8?pvs=4">Requisitos funcionais e regras de negócio</a>
+- <a href="https://gusales.notion.site/gusales/RoadMap-Ignite-Gympass-API-c1b83f62f37a4d3faefae6f20531a8d8">Requisitos funcionais e regras de negócio</a>
 
 - <a href="https://app.rocketseat.com.br">Rocketseat Ignite</a>

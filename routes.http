@@ -1,0 +1,18 @@
+POST  http://localhost:1313/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "johndoe@gmail.com",
+  "password": "123456"
+}
+
+###
+
+POST  http://localhost:1313/sessions
+Content-Type: application/json
+
+{
+  "email": "johndoe@gmail.com",
+  "password": "123456"
+}

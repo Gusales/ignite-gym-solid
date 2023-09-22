@@ -27,7 +27,7 @@ describe('Get user profile', () => {
   })
 
   it('should not be able to get user profile with wrong id', async () => {
-    expect(() =>
+    await expect(() =>
       sut.execute({ userId: 'non-exiting-id' }),
     ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })

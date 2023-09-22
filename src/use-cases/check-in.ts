@@ -17,6 +17,13 @@ export class CheckInUseCase {
     gymId,
     userId,
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
+    const checkInSameDay = await this.checkInsRepository.findByUserIdOnDate(
+      userId,
+      new Date(),
+    )
+    if (checkInSameDay) {
+      throw new Error("You don't make twice check-ins in same day.")
+    }
     const checkIn = await this.checkInsRepository.create({
       gym_id: gymId,
       user_id: userId,

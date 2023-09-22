@@ -2,6 +2,7 @@ import { CheckInRepository } from '@/repositories/check-ins-repository'
 import { GymsRepository } from '@/repositories/gym-repository'
 import { CheckIn } from '@/types/checkIn-type'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates'
 
 interface CheckInUseCaseRequest {
   userId: string
@@ -23,14 +24,31 @@ export class CheckInUseCase {
   async execute({
     gymId,
     userId,
+    userLatitude,
+    userLongitude,
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
     const gym = await this.gymsRepository.findById(gymId)
-    console.log(gym)
     if (!gym) {
       throw new ResourceNotFoundError()
     }
 
     // Calcular a distancia entre o usuário e a academia
+    const distance = getDistanceBetweenCoordinates(
+      {
+        latitude: userLatitude,
+        longitude: userLongitude,
+      },
+      {
+        latitude: gym.latitude.toNumber(),
+        longitude: gym.longitude.toNumber(),
+      },
+    )
+
+    const MAX_DISTANCE_IN_KM = 0.1 // 100 meters
+
+    if (distance > MAX_DISTANCE_IN_KM) {
+      throw new Error()
+    }
 
     const checkInSameDay = await this.checkInsRepository.findByUserIdOnDate(
       userId,

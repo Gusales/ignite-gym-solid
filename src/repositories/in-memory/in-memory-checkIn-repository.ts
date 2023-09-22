@@ -44,4 +44,8 @@ export class InMemoryCheckInRepository implements CheckInRepository {
     this.items.push(checkIn)
     return checkIn
   }
+
+  async countByUserId(userId: string) {
+    return this.items.filter((item) => item.user_id === userId).length
+  }
 }
